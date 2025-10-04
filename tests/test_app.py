@@ -11,3 +11,11 @@ def test_read_root_deve_retornar_ok_e_ola_mundo():
 
     assert response.status_code == HTTPStatus.OK # Assert (Asserto) afirmando que..., estagio final que queremos
     assert response.json() == {'message': 'Ola mundo'}  # Assert (Asserto) afirmando que exatamente isso.
+
+
+def test_ligado_():
+    cliente = TestClient(app)
+    response = cliente.get('/ligado')
+
+    assert response.status_code == HTTPStatus.OK
+    assert response.text == "Valou"
