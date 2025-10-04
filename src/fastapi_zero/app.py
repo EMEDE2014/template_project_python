@@ -1,20 +1,23 @@
-from fastapi import FastAPI
 from http import HTTPStatus
 
+from fastapi import FastAPI
 
-from fastapi_zero.schema import Message,UsersSchema ,UserPublic
+from fastapi_zero.schema import Message, UserDB, UserPublic, UserSchema
 
 app = FastAPI()
 
+database = []  # Lista provisória para fins de estudo
 
-@app.get('/', status_code=HTTPStatus.OK ,response_model=Message)
+
+@app.get('/', status_code=HTTPStatus.OK, response_model=Message)
 def read_root():
-    return {'message': 'Ola mundo'}
- 
+    return {'message': 'Olá Mundo!'}
 
 
-@app.post('users', status_code=HTTPStatus.CREATED,response_model=UserPublic)
-def create_user(user: UsersSchema):
+@app.post('/users/', status_code=HTTPStatus.CREATED, response_model=UserPublic)
+def create_user(user: UserSchema):
+    user_with_id = UserDB(**user.model_dump(), id=len(database) + 1)
 
-    return user
+    database.append(user_with_id)
 
+    return user_with_id

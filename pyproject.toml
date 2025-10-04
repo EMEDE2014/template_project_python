@@ -9,6 +9,7 @@ dependencies = [
     "fastapi[standard] (>=0.116.1,<0.117.0)",
     "shell (>=1.0.1,<2.0.0)",
     "pydantic[email] (>=2.11.9,<3.0.0)",
+    "taskipy (>=1.14.1,<2.0.0)",
 ]
 
 
@@ -28,7 +29,9 @@ pytest-cov = "^6.2.1"
 taskipy = "^1.14.1"
 
 [tool.pytest.ini_options]
-pythonpath = "."
+pythonpath = [
+    "src",
+] ## Representa do diretório src do pacote do seu projeto, que é onde o código-fonte do seu projeto está localizado. como o pytest precisa saber onde encontrar o código que você deseja testar.
 addopts = [
     '-p no:warnings',
     '--cov=src',
@@ -51,7 +54,7 @@ quote-style = 'single'
 run = 'fastapi dev src/fastapi_zero/app.py'
 
 pre_test = 'task lint'
-test = 'pytest --cov=fastapi_zero -vv'
+test = 'pytest --cov=gato -vv'
 post_test = 'coverage html'
 
 lint = 'ruff check . && ruff check . --diff'
