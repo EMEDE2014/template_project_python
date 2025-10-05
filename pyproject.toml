@@ -40,7 +40,7 @@ addopts = [
 [tool.ruff]
 ## Para excluir problemas com extend-excluide
 exclude = ["venv/", "build/", "dist/", "tests/", "*.bak"]
-line-length = 79
+line-length = 120
 
 [tool.ruff.lint]
 preview = true
